@@ -1,0 +1,16 @@
+{
+  "name": "users",
+  "version": "1.0.0",
+  "description": "Users Service",
+  "main": "index.js",
+  "repository": "https://github.com/staymarta/users",
+  "author": "Jared Allard <jared@staymarta.com>",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "babel-eslint": "^7.1.1",
+    "debug": "^2.6.2",
+    "eslint": "^3.17.1",
+    "libcommunication": "^1.0.0",
+    "uuid": "^3.0.1"
+  }
+}
