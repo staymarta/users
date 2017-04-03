@@ -11,6 +11,12 @@
     "debug": "^2.6.2",
     "eslint": "^3.17.1",
     "libcommunication": "^1.0.0",
-    "uuid": "^3.0.1"
-  }
+    "uuid": "^3.0.1",
+    "snyk": "^1.26.1"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
