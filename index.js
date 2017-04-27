@@ -23,7 +23,7 @@ const communication = new Communication();
     let user = req.string;
 
     if(!user) {
-      msg.error('USER_NOT_FOUND');
+      msg.error('USER_NOT_FOUND', 404);
       return;
     }
 
