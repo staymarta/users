@@ -616,7 +616,7 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-libcommunication@^1.0.0:
+libcommunication@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/libcommunication/-/libcommunication-1.0.2.tgz#a97f50b8c48410cd656d3b1d0a5251ff79b15763"
   dependencies:
