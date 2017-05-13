@@ -8,28 +8,18 @@
 
 'use strict';
 
-const Communication = require('libcommunication')
 const debug         = require('debug')('staymarta:users')
+const express       = require('express')
 
-const communication = new Communication();
+const app           = express();
 
-(async () => {
-
-  await communication.connect('users');
-
-  debug('service', 'waiting for messages');
-  communication.wait('v1.users.get', msg => {
-    const req = msg.body.request;
-    let user = req.string;
-
-    if(!user) {
-      msg.error('USER_NOT_FOUND', 404);
-      return;
-    }
-
-    msg.reply({
-      username: 'jaredallard',
-      name: 'Jared Allard'
-    })
+app.get('/me', (req, res) => {
+  return res.send({
+    username: 'jaredallard',
+    first_name: 'Jared',
+    last_name: 'Allard',
+    email: 'jaredallard@outlook.com'
   });
-})()
+})
+
+app.listen(80);

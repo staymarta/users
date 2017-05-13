@@ -10,8 +10,7 @@
     "babel-eslint": "^7.1.1",
     "debug": "^2.6.2",
     "eslint": "^3.17.1",
-    "libcommunication": "^1.0.0",
-    "uuid": "^3.0.1",
+    "express": "^4.15.2",
     "snyk": "^1.26.1"
   },
   "scripts": {
