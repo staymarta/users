@@ -8,14 +8,15 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "babel-eslint": "^7.1.1",
+    "body-parser": "^1.17.1",
     "debug": "^2.6.2",
     "eslint": "^3.17.1",
     "express": "^4.15.2",
-    "snyk": "^1.26.1"
+    "express-validation": "^1.0.2",
+    "joi": "^10.4.2"
   },
   "scripts": {
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "start": "node index.js"
   },
   "snyk": true
 }
