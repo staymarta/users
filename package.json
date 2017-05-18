@@ -7,6 +7,7 @@
   "author": "Jared Allard <jared@staymarta.com>",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "arangojs": "^5.6.1",
     "babel-eslint": "^7.1.1",
     "body-parser": "^1.17.1",
     "debug": "^2.6.2",
@@ -16,7 +17,7 @@
     "joi": "^10.4.2"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node --inspect=0.0.0.0:5858 index.js"
   },
   "snyk": true
 }

@@ -8,9 +8,10 @@
 
 'use strict';
 
-const debug         = require('debug')('staymarta:users')
 const express       = require('express')
 const Joi           = require('joi')
+const Database      = require('./lib/db.js')
+const debug         = require('./lib/logger.js')('staymarta:users')
 
 const bodyP         = require('body-parser')
 const validate      = require('express-validation')
@@ -25,17 +26,18 @@ const schemaOptions = {
   allowUnknownCookies: false
 }
 
-app.use(bodyP.json())
+let db              = new Database()
+db.connect('users')
 
+app.use(bodyP.json())
+app.use(require('./lib/service.js'))
+
+// Get authenticated user
 app.get('/me', (req, res) => {
-  return res.send({
-    username: 'jaredallard',
-    first_name: 'Jared',
-    last_name: 'Allard',
-    email: 'jaredallard@outlook.com'
-  });
+  return res.error('NOT_IMPLEMENTED');
 })
 
+// Create a user
 app.post('/',
   validate({
     options: schemaOptions,
@@ -47,8 +49,20 @@ app.post('/',
       email: Joi.string().email().required()
     }
   }),
-(req, res) => {
-  return res.send(req.body)
+async (req, res) => {
+  try {
+    await db.exists('users', 'username', req.body.username)
+    await db.create('users', req.body, false)
+  } catch(e) {
+    if(e.message === 'EXISTS') return res.error('User already exists')
+    return res.error('Failed to create user')
+  }
+
+  return res.success()
 })
 
 app.listen(80);
+
+process.on('unhandledRejection', reason => {
+  console.log('Unhandled Promise Rejection', reason)
+});
