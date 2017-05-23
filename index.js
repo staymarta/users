@@ -50,6 +50,7 @@ app.post('/',
     }
   }),
 async (req, res) => {
+  console.log('we are', req.get('X-Service'), 'with endpoint', req.get('X-Gateway-Endpoint'), 'from', req.get('X-Gateway-ID'))
   try {
     await db.exists('users', 'username', req.body.username)
     await db.create('users', req.body, false)
