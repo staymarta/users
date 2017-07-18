@@ -17,6 +17,7 @@ const bodyP         = require('body-parser')
 const validate      = require('express-validation')
 const app           = express();
 
+
 // disable unknowns.
 const schemaOptions = {
   allowUnknownBody:    false,
@@ -42,22 +43,16 @@ app.post('/',
   validate({
     options: schemaOptions,
     body: {
-      username: Joi.string().alphanum().required(),
+      username:  Joi.string().alphanum().required(),
+      password:  Joi.string().required(),
       full_name: Joi.string().required(),
-      age: Joi.number().required(),
-      location: Joi.string().required(),
-      email: Joi.string().email().required()
+      age:       Joi.number().required(),
+      location:  Joi.string().required(),
+      email:     Joi.string().email().required()
     }
   }),
 async (req, res) => {
   console.log('we are', req.get('X-Service'), 'with endpoint', req.get('X-Gateway-Endpoint'), 'from', req.get('X-Gateway-ID'))
-  try {
-    await db.exists('users', 'username', req.body.username)
-    await db.create('users', req.body, false)
-  } catch(e) {
-    if(e.message === 'EXISTS') return res.error('User already exists')
-    return res.error('Failed to create user')
-  }
 
   return res.success()
 })
